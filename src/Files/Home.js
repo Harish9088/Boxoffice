@@ -4,9 +4,9 @@ import Mainpages from "../Components/Mainpages"
 
 function Home() {
     return (
-        <div>
-             <Mainpages />
-        </div>
+        <Mainpages>
+            Welcome home
+        </Mainpages>
     )
 }
 

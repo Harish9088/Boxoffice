@@ -1,10 +1,10 @@
 import React from 'react'
 
-function Title() {
+function Title({title,subtitle}) {
     return (
         <div>
-            <h1>Box Office</h1>
-            <p>Are you looking for a movie or a character</p>
+            <h1>{title}</h1>
+            <p>{subtitle}</p>
         </div>
     )
 }

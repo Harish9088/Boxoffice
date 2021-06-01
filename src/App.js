@@ -1,25 +1,25 @@
 //eslint-disable-next-line
 
 import './App.css';
-import { Route, Switch,BrowserRouter } from 'react-router-dom';
+import { Route, Switch} from 'react-router-dom';
 import Starred from './Files/Starred';
 import Home from './Files/Home';
 
 function App() {
   return (
-    <BrowserRouter>
+      
     <Switch>
       <Route exact path="/">
         <Home />
       </Route>
-      <Route exact path="/show">
+      <Route exact path="/starred">
         <Starred />
       </Route>
       <Route>
         404 Page not Found
       </Route>
     </Switch>
-   </BrowserRouter>
+   
   );
 }
 

@@ -2,15 +2,12 @@ import React from 'react'
 import Title from './Title'
 import Navs from "./Navs"
 
-function Mainpages() {
+function Mainpages({children}) {
     return (
         <div>
-           <Title /> 
+           <Title title="BoxOffice" subtitle="Are you looking for a movie or a character"/> 
            <Navs />
-           <input type="text" placeholder="search for movie or character"/>
-           <label htmlFor="shows">Shows<input type="radio" value="shows"/></label>
-           <label htmlFor="actors">Actors<input type="radio" value="actors"/></label>
-            <button>Search</button>
+           {children}
         </div>
     )
 }
