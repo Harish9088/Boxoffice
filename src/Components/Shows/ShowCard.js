@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from "react-router-dom"
+import { StyledShowCard } from './ShowCard.style';
 
 function ShowCard({id,name,image,summary}) {
     const summaryAsText = summary
@@ -7,7 +8,7 @@ function ShowCard({id,name,image,summary}) {
     : "No description";
 
     return (
-        <div>
+        <StyledShowCard>
            <div>
                <img src={image} alt="show"/>
            </div> 
@@ -19,7 +20,7 @@ function ShowCard({id,name,image,summary}) {
           {/* <Star active={isStarred} /> */}
         </button>
       </div>
-        </div>
+        </StyledShowCard>
     )
 }
 

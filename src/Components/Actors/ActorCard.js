@@ -1,8 +1,9 @@
 import React from 'react'
+import { StyledActorCard } from './ActorCard.style'
 
 function ActorCard({name,gender,image,birthday,deathday,country}) {
     return (
-        <div>
+        <StyledActorCard>
             <div className="img-wrapper">
         <img src={image} alt="actor" />
       </div>
@@ -13,7 +14,7 @@ function ActorCard({name,gender,image,birthday,deathday,country}) {
       {birthday ? <p>Born {birthday}</p> : null}
       <p className="deathday">{deathday ? `Died ${deathday}` : "Alive"}</p>
    
-        </div>
+        </StyledActorCard>
     )
 }
 
