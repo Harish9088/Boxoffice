@@ -1,5 +1,7 @@
 import React,{useState} from "react"
+import ActorGrid from "../Components/Actors/ActorGrid"
 import Mainpages from "../Components/Mainpages"
+import ShowGrid from "../Components/Shows/ShowGrid"
 import { apiGet } from "../misc/config"
 
 
@@ -33,9 +35,8 @@ function Home() {
                 return <div>No data Found</div>
             }
             if(results && results.length>0){
-                return results[0].show?
-                results.map(item=><div key={item.show.id}>{item.show.name}</div>):
-                results.map(item=><div key={item.person.id}>{item.person.name}</div>)
+                return results[0].show?<ShowGrid data={results}/>:<ActorGrid data={results}/>
+                
             }
         }
     return (
