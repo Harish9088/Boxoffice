@@ -1,24 +1,25 @@
-import logo from './logo.svg';
+//eslint-disable-next-line
+
 import './App.css';
+import { Route, Switch,BrowserRouter } from 'react-router-dom';
+import Starred from './Files/Starred';
+import Home from './Files/Home';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <Route exact path="/show">
+        <Starred />
+      </Route>
+      <Route>
+        404 Page not Found
+      </Route>
+    </Switch>
+   </BrowserRouter>
   );
 }
 
