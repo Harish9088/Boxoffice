@@ -1,6 +1,8 @@
 import React,{useEffect,useReducer} from 'react'
 import { useParams } from 'react-router'
 import { apiGet } from '../misc/config'
+import { ShowPageWrapper, InfoBlock } from "./Show.styled";
+
 import ShowMainData from "../Components/Shows/ShowMainData"
 import Details from "../Components/Shows/Details"
 import Seasons from "../Components/Shows/Seasons"
@@ -48,31 +50,31 @@ function Show() {
         return <div>Error occured:{error}</div>
     }
     return (
-        <div>
-        <ShowMainData
+        <ShowPageWrapper>
+      <ShowMainData
         image={show.image}
         name={show.name}
         summary={show.summary}
         rating={show.rating}
         tags={show.genres}
       />
-        <div>
-            <h2>Details</h2>
-            <Details
+      <InfoBlock>
+        <h1>Details</h1>
+        <Details
           status={show.status}
           network={show.network}
           premiered={show.premiered}
         />
-        </div>
-        <div>
-            <h2>Seasons</h2>
-            <Seasons seasons={show._embedded.seasons} />
-        </div>
-        <div>
-            <h2>Cast</h2>
-            <Cast cast={show._embedded.cast} />
-        </div>
-         </div>
+      </InfoBlock>
+      <InfoBlock>
+        <h1>Seasons</h1>
+        <Seasons seasons={show._embedded.seasons} />
+      </InfoBlock>
+      <InfoBlock>
+        <h1>Cast</h1>
+        <Cast cast={show._embedded.cast} />
+      </InfoBlock>
+    </ShowPageWrapper>
     )
 }
 
