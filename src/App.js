@@ -1,30 +1,32 @@
-//eslint-disable-next-line
 
-import './App.css';
-import { Route, Switch} from 'react-router-dom';
-import Starred from './Files/Starred';
-import Home from './Files/Home';
-import Show from "./Files/Show"
+import { Switch, Route } from "react-router-dom";
+import Home from "./Files/Home";
+import Starred from "./Files/Starred";
+import Show from "./Files/Show";
+import { ThemeProvider } from "styled-components";
 
-function App() {
+const theme = {
+  mainColors: {
+    blue: "#2400ff",
+    gray: "#c6c6c6",
+    dark: "#353535"
+  }
+};
+export default function App() {
   return (
-      
-    <Switch>
-      <Route exact path="/">
-        <Home />
-      </Route>
-      <Route exact path="/starred">
-        <Starred />
-      </Route>
-      <Route exact path="/show/:id">
-        <Show />
-      </Route>
-      <Route>
-        404 Page not Found
-      </Route>
-    </Switch>
-   
+    <ThemeProvider theme={theme}>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/starred">
+          <Starred />
+        </Route>
+        <Route exact path="/show/:id">
+          <Show />
+        </Route>
+        <Route>404 not found</Route>
+      </Switch>
+    </ThemeProvider>
   );
 }
-
-export default App;

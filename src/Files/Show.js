@@ -1,56 +1,27 @@
-import React,{useEffect,useReducer} from 'react'
-import { useParams } from 'react-router'
-import { apiGet } from '../misc/config'
-import { ShowPageWrapper, InfoBlock } from "./Show.styled";
+import React from "react";
+import { useParams } from "react-router-dom";
 
-import ShowMainData from "../Components/Shows/ShowMainData"
-import Details from "../Components/Shows/Details"
-import Seasons from "../Components/Shows/Seasons"
-import Cast from "../Components/Shows/Cast"
+import ShowMainData from "../Components/Shows/ShowMainData";
+import Details from "../Components/Shows/Details";
+import Seasons from "../Components/Shows/Seasons";
+import Cast from "../Components/Shows/Cast";
+import { ShowPageWrapper, InfoBlock } from "./Show.styled";
+import { useShow } from "../misc/customHooks";
 
 function Show() {
-    const {id} = useParams()
-    
-    
-    const initialState={show:null,isLoading:true,error:null}
+  const { id } = useParams();
 
-    const reducer=(state,action)=>{
-          switch(action.type){
-              case "FETCH_SUCCESS":
-                  return {isLoading:false,error:null,show:action.show}
-               case "FETCH_FAIL":
-                   return {...state,isLoading:false,error:action.error}
-                   default:
-                       return state
-                }
-    }
-     
-    const [{show,isLoading,error}, dispatch] = useReducer(reducer, initialState)
-    useEffect(() => {
-        let isMounted=true
-        apiGet(`/shows/${id}?embed[]=seasons&embed[]=cast`)
-        .then(results=>{
-            if(isMounted){
-                dispatch({type:"FETCH_SUCCESS",show:results});
-               }
-            }).catch(error=>{
-            if(isMounted){
-                dispatch({type:"FETCH_FAIL",error:error.message})
-                }
-           
-        })
-        return ()=>{isMounted=false;}
-        
-    }, [id])
+  const { show, isLoading, error } = useShow(id);
+  console.log(show);
 
-    if(isLoading){
-        return <div>Page is being Loading</div>
-    }
-    if(error){
-        return <div>Error occured:{error}</div>
-    }
-    return (
-        <ShowPageWrapper>
+  if (isLoading) {
+    return <div>Data is loading</div>;
+  }
+  if (error) {
+    return <div>Error occured:{error}</div>;
+  }
+  return (
+    <ShowPageWrapper>
       <ShowMainData
         image={show.image}
         name={show.name}
@@ -75,7 +46,7 @@ function Show() {
         <Cast cast={show._embedded.cast} />
       </InfoBlock>
     </ShowPageWrapper>
-    )
+  );
 }
 
-export default Show
+export default Show;
